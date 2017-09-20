@@ -1,6 +1,6 @@
 <%include ../partials/header %>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-6">
         <h1><%=user.firstName + " " + user.lastName%> 
         <% if(currentUser && user._id.equals(currentUser._id) || currentUser && currentUser.isAdmin) {%>
             <span style="font-size:0.4em;">(<a href="/users/<%=user.id%>/edit">Edit Profile</a>)</span>
@@ -11,14 +11,21 @@
         </div>
             
     </div>
+    
     <div class="col-md-8">
-        <h3><%=user.username%>'s campgrounds:</h3>
-        <% campgrounds.forEach(function(campground) { %>
-        <ul>
-            <li><a href="/campgrounds/<%=campground.id%>"><%=campground.name%></a></li>
-        </ul>
-        <% }); %>
+        <div class="row">
+            <h3><%=user.username%>'s campgrounds:</h3>
+            <% campgrounds.forEach(function(campground) { %>
+            <div class="col-md-4 col-sm-4">
+            <a class="thumbnail" href="/campgrounds/<%=campground.id%>">
+                    <img src="<%=campground.image%>">
+                    <div class="caption" style="text-align:center;"><%=campground.name%></div></a>
+            </div>    
+            <% }); %>
+        </div>
     </div>
 </div>
+
+
 
 <%include ../partials/footer %>
